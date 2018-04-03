@@ -8,4 +8,6 @@ node_modules
 src
 
 # Config
+.vscode
 tsconfig.json
+
