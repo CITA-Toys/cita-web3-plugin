@@ -1,0 +1,11 @@
+# Dependencies
+node_modules
+
+# Error and Log
+*.log
+
+# Source
+src
+
+# Config
+tsconfig.json
