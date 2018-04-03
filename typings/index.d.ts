@@ -23,15 +23,14 @@ declare type RPCParam = string | number | boolean
 declare type SignedData = string
 declare type Hash = string
 declare type Detailed = boolean
-declare type BlockNumber = string | number
+declare type BlockNumber = string
 declare type ID = number
 declare type Server = string
 
 declare type Result = string | object
 declare interface JSONRPCError {
-  code: number
+  code: string
   message: string
-  data: any
 }
 declare interface IJSONRPCParams {
   method: CITA_METHODS
