@@ -12,7 +12,7 @@ export declare class CITA {
         detailed: boolean;
     }) => Promise<string | object | JSONRPCError>;
     getBlockByNumber: ({ quantity, detailed, }: {
-        quantity: string | number;
+        quantity: string;
         detailed: boolean;
     }) => Promise<string | object | JSONRPCError>;
     getTransactionReceipt: (hash: string) => Promise<string | object | JSONRPCError>;
