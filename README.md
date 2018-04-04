@@ -1,3 +1,5 @@
+![Build Status](https://travis-ci.org/CITA-Toys/cita-web3-plugin.svg?branch=master)
+
 # CITA-Web3-Plugin
 
 Promise based [CITA RPC](https://cryptape.github.io/cita/usage-guide/rpc/) toolkit.
