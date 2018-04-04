@@ -1,7 +1,12 @@
 {
   "name": "cita-web3-plugin",
-  "version": "1.0.13",
-  "keywords": ["CITA", "Ethereum", "JSONRPC", "Promise"],
+  "version": "1.0.14",
+  "keywords": [
+    "CITA",
+    "Ethereum",
+    "JSONRPC",
+    "Promise"
+  ],
   "main": "lib/index.js",
   "types": "lib/index.d.js",
   "repository": "https://github.com/Keith-CY/cita-web3-plugin",
