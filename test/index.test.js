@@ -1,16 +1,16 @@
-const { default: CitaWeb3Plugin, JSONRPC } = require('../dist/')
+const { default: CitaWeb3Plugin, JSONRPC } = require('../lib/')
 
 const SERVER = 'http://39.104.94.244:1301'
 
 const { CITA } = CitaWeb3Plugin({ server: SERVER })
 
-test('get peerCount to be 0x3', () => {
+test('get peerCount which should starts with 0x', () => {
   return CITA.netPeerCount().then(count => {
-    expect(count).toEqual('0x3')
+    expect(count.startsWith('0x')).toBe(true)
   })
 })
 
-test('get block number', async () => {
+test('get block number which should starts with 0x', async () => {
   const blockNumber = await CITA.getBlockNumber()
   expect(blockNumber.startsWith('0x')).toBe(true)
 })
