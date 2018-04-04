@@ -1,6 +1,6 @@
 {
   "name": "cita-web3-plugin",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "main": "lib/index.js",
   "types": "lib/index.d.js",
   "repository": "https://github.com/Keith-CY/cita-web3-plugin",
