@@ -14,7 +14,7 @@ Promise based [CITA RPC](https://cryptape.github.io/cita/usage-guide/rpc/) toolk
 # Installing
 
 ```bash
-$ yarn add cita-web3-plugin
+$ yarn add @cita/web3-plugin
 ```
 
 # Example
