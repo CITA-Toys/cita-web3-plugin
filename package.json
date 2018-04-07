@@ -1,6 +1,6 @@
 {
-  "name": "cita-web3-plugin",
-  "version": "1.0.14",
+  "name": "@cita/web3-plugin",
+  "version": "1.0.15",
   "keywords": [
     "CITA",
     "Ethereum",
