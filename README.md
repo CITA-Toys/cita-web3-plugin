@@ -57,4 +57,17 @@ CITA.getBlockByHash({
   hash: blockHash,
   detailed: true
 }).then(block => console.log(block))
+
+
+
+/**
+ * @function getBlockHistory
+ * @description Retrieve blocks of height from (by - count + 1) to by
+ * @param {by: string, count: number} - by: the startpoint of history, count: the count of records to retrieve
+ * @return {array} list of block
+ */
+const blocks = await CITA.getBlockHistory({
+  by: '0x4bb99',
+  count: 5,
+}).then(blocks => console.log(blocks))
 ```

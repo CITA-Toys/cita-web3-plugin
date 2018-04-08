@@ -65,6 +65,10 @@ export declare class CITA {
         detailed: boolean;
     }) => Promise<string | object | JSONRPCError>;
     getTransactionReceipt: (hash: string) => Promise<string | object | JSONRPCError>;
+    getBlockHistory: ({ by, count, }: {
+        by: string;
+        count: number;
+    }) => Promise<(string | object | JSONRPCError)[]>;
 }
 declare const citaWeb3Plugin: ({ web3, server }: {
     web3?: any;

@@ -17,7 +17,6 @@ test('Form RPC Request', () => {
 test('get peerCount which should starts with 0x', () => {
   expect.assertions(1)
   return CITA.netPeerCount().then(count => {
-    console.log(count)
     expect(count.startsWith('0x')).toBe(true)
   })
 })
@@ -44,4 +43,16 @@ test('get block by hash', async () => {
   expect.assertions(1)
   const block = await CITA.getBlockByHash({ hash, detailed: true })
   expect(block.hash).toBe(hash)
+})
+
+test('get block history', async () => {
+  const COUNT = 5
+  expect.assertions(2)
+  const blockNumber = await CITA.getBlockNumber()
+  const blocks = await CITA.getBlockHistory({
+    by: blockNumber,
+    count: COUNT,
+  })
+  expect(blocks.length).toBe(COUNT)
+  expect(blocks.every(block => block.hash.startsWith('0x'))).toBeTruthy()
 })
