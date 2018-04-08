@@ -1,6 +1,6 @@
 ![Build Status](https://travis-ci.org/CITA-Toys/cita-web3-plugin.svg?branch=master)
-[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/cita-web3-plugin)
-[![npm type definitions](https://img.shields.io/npm/types/chalk.svg)](https://www.npmjs.com/package/cita-web3-plugin)
+[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/@cita/web3-plugin)
+[![npm type definitions](https://img.shields.io/npm/types/chalk.svg)](https://www.npmjs.com/package/@cita/web3-plugin)
 ![npm](https://img.shields.io/npm/l/express.svg)
 
 # CITA-Web3-Plugin

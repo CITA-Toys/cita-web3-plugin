@@ -1,12 +1,23 @@
-const { default: CitaWeb3Plugin, JSONRPC } = require('../lib/')
+const {
+  default: CitaWeb3Plugin,
+  JSONRPC
+} = require('../lib/')
 
 const SERVER = 'http://39.104.94.244:1301'
 
-const { CITA } = CitaWeb3Plugin({ server: SERVER })
+const {
+  CITA
+} = CitaWeb3Plugin({
+  server: SERVER
+})
 
 test('Form RPC Request', () => {
   const id = Math.round(Math.random() * 100)
-  expect(JSONRPC({ method: 'test', params: ['test'], id })).toEqual({
+  expect(JSONRPC({
+    method: 'test',
+    params: ['test'],
+    id
+  })).toEqual({
     jsonrpc: '2.0',
     method: 'test',
     params: ['test'],
@@ -41,7 +52,10 @@ test('get block by hash', async () => {
   const hash =
     '0xa4fa53748ccb4c2009e1655772622f89cceea55d1bd1fb7cc49fc5fb41567c4d'
   expect.assertions(1)
-  const block = await CITA.getBlockByHash({ hash, detailed: true })
+  const block = await CITA.getBlockByHash({
+    hash,
+    detailed: true
+  })
   expect(block.hash).toBe(hash)
 })
 
