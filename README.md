@@ -70,4 +70,14 @@ const blocks = await CITA.getBlockHistory({
   by: '0x4bb99',
   count: 5,
 }).then(blocks => console.log(blocks))
+
+
+/**
+ * @function setServer
+ * @description set server
+ * @param {string} server
+ * @return undefined
+ */
+
+CITA.setServer('http://localhost:1301')
 ```
