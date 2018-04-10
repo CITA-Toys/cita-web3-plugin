@@ -19,7 +19,7 @@ export declare enum CITA_METHODS {
     ETH_GET_FILTER_LOGS = "eth_getFilterLogs",
     CITA_GET_TRANSACTION_PROOF = "cita_getTransactionProof",
 }
-export declare type RPCParam = string | number | boolean;
+export declare type RPCParam = string | number | boolean | object;
 export declare type SignedData = string;
 export declare type Hash = string;
 export declare type Detailed = boolean;
@@ -66,6 +66,30 @@ export declare class CITA {
         detailed: boolean;
     }) => Promise<string | object | JSONRPCError>;
     getTransactionReceipt: (hash: string) => Promise<string | object | JSONRPCError>;
+    getLogs: ({ topics, fromBlock, }?: {
+        topics: string[];
+        fromBlock: string;
+    }) => Promise<string | object | JSONRPCError>;
+    ethCall: ({ from, to, data, blockNumber, }: {
+        from: string;
+        to: string;
+        data: string;
+        blockNumber: string;
+    }) => Promise<string | object | JSONRPCError>;
+    getTransaction: (hash: string) => Promise<string | object | JSONRPCError>;
+    getTransactionCount: ({ accountAddr, blockNumber, }: {
+        accountAddr: string;
+        blockNumber: string;
+    }) => Promise<string | object | JSONRPCError>;
+    getCode: ({ contractAddr, blockNumber, }: {
+        contractAddr: string;
+        blockNumber: string;
+    }) => Promise<string | object | JSONRPCError>;
+    getAbi: ({ addr, blockNumber }: {
+        addr: string;
+        blockNumber: string;
+    }) => Promise<string | object | JSONRPCError>;
+    getTransactionProof: (hash: string) => Promise<string | object | JSONRPCError>;
     getBlockHistory: ({ by, count, }: {
         by: string;
         count: number;

@@ -1,23 +1,20 @@
-const {
-  default: CitaWeb3Plugin,
-  JSONRPC
-} = require('../lib/')
+const { default: CitaWeb3Plugin, JSONRPC } = require('../lib/')
 
 const SERVER = 'http://39.104.94.244:1301'
 
-const {
-  CITA
-} = CitaWeb3Plugin({
-  server: SERVER
+const { CITA } = CitaWeb3Plugin({
+  server: SERVER,
 })
 
 test('Form RPC Request', () => {
   const id = Math.round(Math.random() * 100)
-  expect(JSONRPC({
-    method: 'test',
-    params: ['test'],
-    id
-  })).toEqual({
+  expect(
+    JSONRPC({
+      method: 'test',
+      params: ['test'],
+      id,
+    }),
+  ).toEqual({
     jsonrpc: '2.0',
     method: 'test',
     params: ['test'],
@@ -54,7 +51,7 @@ test('get block by hash', async () => {
   expect.assertions(1)
   const block = await CITA.getBlockByHash({
     hash,
-    detailed: true
+    detailed: true,
   })
   expect(block.hash).toBe(hash)
 })
@@ -70,3 +67,23 @@ test('get block history', async () => {
   expect(blocks.length).toBe(COUNT)
   expect(blocks.every(block => block.hash.startsWith('0x'))).toBeTruthy()
 })
+
+test('get transaction detail', async () => {
+  const HASH =
+    '0x75cfb052270979d927c696ebbbc6e7d96f93a416bbc753a1ad8ad1765211e0e5'
+  const tx = await CITA.getTransaction(HASH)
+  expect(tx.hash.startsWith('0x')).toBeTruthy()
+})
+
+test('get logs', async () => {
+  const logs = await CITA.getLogs({ topics: [] })
+  if (logs.length) {
+    expect(logs[0].topics.length).toBeTruthy()
+  }
+})
+
+// TODO: Eth Call
+// TODO: eth_getTransactionCount
+// TODO: eth_getCode
+// TODO: eth_getAbi
+// TODO: cita_getTransactionProof
