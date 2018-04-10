@@ -1,6 +1,6 @@
 {
   "name": "@cita/web3-plugin",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "keywords": ["CITA", "Ethereum", "JSONRPC", "Promise"],
   "main": "lib/index.js",
   "types": "lib/index.d.js",

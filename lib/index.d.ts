@@ -53,6 +53,7 @@ export declare class CITA {
     citaFetchIns: AxiosInstance;
     citaFetch: (config: IJSONRPCParams) => Promise<Result | JSONRPCError>;
     constructor(server: Server);
+    setServer: (server: string) => void;
     netPeerCount: () => Promise<string | object | JSONRPCError>;
     getBlockNumber: () => Promise<string | object | JSONRPCError>;
     sendTransaction: (signedData: string) => Promise<string | object | JSONRPCError>;
@@ -70,8 +71,8 @@ export declare class CITA {
         count: number;
     }) => Promise<(string | object | JSONRPCError)[]>;
 }
-declare const citaWeb3Plugin: ({ web3, server }: {
-    web3?: any;
+declare const citaWeb3Plugin: ({ Web3, server }: {
+    Web3?: any;
     server: string;
 }) => {
     web3: any;
