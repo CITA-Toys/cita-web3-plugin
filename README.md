@@ -20,11 +20,11 @@ $ yarn add @cita/web3-plugin
 # Example
 
 ```javascript
-import CitaWeb3Plugin from 'cita-web3-plugin'
+import web3Plugin from '@cita/web3-plugin'
 
 const SERVER = 'localhost:1337'
 
-const { CITA } = CitaWeb3Plugin({ server: SERVER })
+const { CITA } = web3Plugin({ server: SERVER })
 
 /**
  * @function netPeerCount

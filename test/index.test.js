@@ -35,7 +35,7 @@ test('get block number which should starts with 0x', async () => {
   expect(blockNumber.startsWith('0x')).toBe(true)
 })
 
-test('get block by number', async () => {
+test('get block by number of hash', async () => {
   expect.assertions(1)
   const blockNumber = await CITA.getBlockNumber()
   const block = await CITA.getBlockByNumber({
@@ -45,7 +45,35 @@ test('get block by number', async () => {
   expect(block.header.number).toBe(blockNumber)
 })
 
-test('get block by hash', async () => {
+test('get block by number of integer', async () => {
+  expect.assertions(1)
+  const blockNumber = await CITA.getBlockNumber()
+  const block = await CITA.getBlockByNumber({
+    quantity: +blockNumber,
+    detailed: true,
+  })
+  expect(block.header.number).toBe(blockNumber)
+})
+
+test('get block by number of latest', async () => {
+  expect.assertions(1)
+  const block = await CITA.getBlockByNumber({
+    quantity: 'latest',
+    detailed: true,
+  })
+  expect(block.header.number.startsWith('0x')).toBeTruthy()
+})
+
+test.skip('get block by number of earliest', async () => {
+  expect.assertions(1)
+  const block = await CITA.getBlockByNumber({
+    quantity: 'earliest',
+    detailed: true,
+  })
+  expect(block.header.number.startsWith('0x')).toBeTruthy()
+})
+
+test('get block by hash starts with 0x', async () => {
   const hash =
     '0xa4fa53748ccb4c2009e1655772622f89cceea55d1bd1fb7cc49fc5fb41567c4d'
   expect.assertions(1)
@@ -54,6 +82,17 @@ test('get block by hash', async () => {
     detailed: true,
   })
   expect(block.hash).toBe(hash)
+})
+
+test('get block by hash not starts with 0x', async () => {
+  const hash =
+    'a4fa53748ccb4c2009e1655772622f89cceea55d1bd1fb7cc49fc5fb41567c4d'
+  expect.assertions(1)
+  const block = await CITA.getBlockByHash({
+    hash,
+    detailed: true,
+  })
+  expect(block.hash).toBe(`0x${hash}`)
 })
 
 test('get block history', async () => {
