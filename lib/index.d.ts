@@ -1,3 +1,4 @@
+import { BlockNumber } from './index';
 import { AxiosInstance } from 'axios';
 export declare enum CITA_METHODS {
     NET_PEER_COUNT = "net_peerCount",
@@ -26,7 +27,25 @@ export declare type Detailed = boolean;
 export declare type BlockNumber = string;
 export declare type ID = number;
 export declare type Server = string;
-export declare type Result = string | object;
+export interface Block {
+    body: {
+        transactions: Transaction[];
+    };
+}
+export interface Transaction {
+    blockHash: Hash;
+    blockNumber: BlockNumber;
+    content?: string;
+    basicInfo?: string | {
+        from: string;
+        to: string;
+        value: string;
+        data: string;
+    };
+    hash: Hash;
+    index: string;
+}
+export declare type Result = string | object | Transaction;
 export interface JSONRPCError {
     code: string;
     message: string;
@@ -54,46 +73,46 @@ export declare class CITA {
     citaFetch: (config: IJSONRPCParams) => Promise<Result | JSONRPCError>;
     constructor(server: Server);
     setServer: (server: string) => void;
-    netPeerCount: () => Promise<string | object | JSONRPCError>;
-    getBlockNumber: () => Promise<string | object | JSONRPCError>;
-    sendTransaction: (signedData: string) => Promise<string | object | JSONRPCError>;
+    netPeerCount: () => Promise<string | object | Transaction | JSONRPCError>;
+    getBlockNumber: () => Promise<string | object | Transaction | JSONRPCError>;
+    sendTransaction: (signedData: string) => Promise<string | object | Transaction | JSONRPCError>;
     getBlockByHash: ({ hash, detailed }: {
         hash: string;
         detailed: boolean;
-    }) => Promise<string | object | JSONRPCError>;
+    }) => Promise<string | object>;
     getBlockByNumber: ({ quantity, detailed, }: {
         quantity: string;
         detailed: boolean;
-    }) => Promise<string | object | JSONRPCError>;
-    getTransactionReceipt: (hash: string) => Promise<string | object | JSONRPCError>;
+    }) => Promise<string | object>;
+    getTransactionReceipt: (hash: string) => Promise<string | object | Transaction | JSONRPCError>;
     getLogs: ({ topics, fromBlock, }?: {
         topics: string[];
         fromBlock: string;
-    }) => Promise<string | object | JSONRPCError>;
+    }) => Promise<string | object | Transaction | JSONRPCError>;
     ethCall: ({ from, to, data, blockNumber, }: {
         from: string;
         to: string;
         data: string;
         blockNumber: string;
-    }) => Promise<string | object | JSONRPCError>;
-    getTransaction: (hash: string) => Promise<string | object | JSONRPCError>;
+    }) => Promise<string | object | Transaction | JSONRPCError>;
+    getTransaction: (hash: string) => Promise<Transaction>;
     getTransactionCount: ({ accountAddr, blockNumber, }: {
         accountAddr: string;
         blockNumber: string;
-    }) => Promise<string | object | JSONRPCError>;
+    }) => Promise<string | object | Transaction | JSONRPCError>;
     getCode: ({ contractAddr, blockNumber, }: {
         contractAddr: string;
         blockNumber: string;
-    }) => Promise<string | object | JSONRPCError>;
+    }) => Promise<string | object | Transaction | JSONRPCError>;
     getAbi: ({ addr, blockNumber }: {
         addr: string;
         blockNumber: string;
-    }) => Promise<string | object | JSONRPCError>;
-    getTransactionProof: (hash: string) => Promise<string | object | JSONRPCError>;
+    }) => Promise<string | object | Transaction | JSONRPCError>;
+    getTransactionProof: (hash: string) => Promise<string | object | Transaction | JSONRPCError>;
     getBlockHistory: ({ by, count, }: {
         by: string;
         count: number;
-    }) => Promise<(string | object | JSONRPCError)[]>;
+    }) => Promise<(string | object)[]>;
 }
 declare const citaWeb3Plugin: ({ Web3, server }: {
     Web3?: any;

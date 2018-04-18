@@ -45,6 +45,15 @@ test('get block by number of hash', async () => {
   expect(block.header.number).toBe(blockNumber)
 })
 
+test.skip('get block by number and parse transaction correctly', async () => {
+  const blockNumber = '0x61ed8'
+  const block = await CITA.getBlockByNumber({
+    quantity: blockNumber,
+    detialed: true,
+  })
+  expect(block.body.transactions[0].basicInfo.to).toBeTruthy()
+})
+
 test('get block by number of integer', async () => {
   expect.assertions(1)
   const blockNumber = await CITA.getBlockNumber()
@@ -95,6 +104,16 @@ test('get block by hash not starts with 0x', async () => {
   expect(block.hash).toBe(`0x${hash}`)
 })
 
+test.skip('get block by hash and parse transaction correctly', async () => {
+  const hash =
+    '0x1ae8e40a492336096c6381c6b785cc61996679d3077973ffdb65a37252e1c258'
+  const block = await CITA.getBlockByHash({
+    hash: hash,
+    detialed: true,
+  })
+  expect(block.body.transactions[0].basicInfo.to).toBeTruthy()
+})
+
 test('get block history', async () => {
   const COUNT = 5
   expect.assertions(2)
@@ -112,6 +131,13 @@ test('get transaction detail', async () => {
     '0x75cfb052270979d927c696ebbbc6e7d96f93a416bbc753a1ad8ad1765211e0e5'
   const tx = await CITA.getTransaction(HASH)
   expect(tx.hash.startsWith('0x')).toBeTruthy()
+})
+
+test('get transaction detail and parse transaction correctly', async () => {
+  const HASH =
+    '0x75cfb052270979d927c696ebbbc6e7d96f93a416bbc753a1ad8ad1765211e0e5'
+  const tx = await CITA.getTransaction(HASH)
+  expect(tx.basicInfo).toBeTruthy()
 })
 
 test('get logs', async () => {
