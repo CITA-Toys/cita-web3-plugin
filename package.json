@@ -1,6 +1,6 @@
 {
   "name": "@cita/web3-plugin",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "keywords": [
     "CITA",
     "Ethereum",
@@ -23,6 +23,9 @@
     "typescript": "^2.8.1"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "@types/google-protobuf": "^3.2.7",
+    "axios": "^0.18.0",
+    "cita-web3": "^0.5.7",
+    "google-protobuf": "^3.5.0"
   }
 }
