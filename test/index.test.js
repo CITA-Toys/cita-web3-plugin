@@ -1,6 +1,6 @@
 const { default: CitaWeb3Plugin, JSONRPC } = require('../lib/')
 
-const SERVER = 'http://39.104.94.244:1301'
+const SERVER = 'http://47.75.129.215:1337'
 
 const { CITA } = CitaWeb3Plugin({
   server: SERVER,
@@ -84,7 +84,7 @@ test.skip('get block by number of earliest', async () => {
 
 test('get block by hash starts with 0x', async () => {
   const hash =
-    '0xa4fa53748ccb4c2009e1655772622f89cceea55d1bd1fb7cc49fc5fb41567c4d'
+    '0x59d5517b77cc391999946118bd8c6800112f1046d35b5ae80db66524b3c6bc34'
   expect.assertions(1)
   const block = await CITA.getBlockByHash({
     hash,
@@ -95,7 +95,7 @@ test('get block by hash starts with 0x', async () => {
 
 test('get block by hash not starts with 0x', async () => {
   const hash =
-    'a4fa53748ccb4c2009e1655772622f89cceea55d1bd1fb7cc49fc5fb41567c4d'
+    '59d5517b77cc391999946118bd8c6800112f1046d35b5ae80db66524b3c6bc34'
   expect.assertions(1)
   const block = await CITA.getBlockByHash({
     hash,
@@ -106,7 +106,7 @@ test('get block by hash not starts with 0x', async () => {
 
 test.skip('get block by hash and parse transaction correctly', async () => {
   const hash =
-    '0x1ae8e40a492336096c6381c6b785cc61996679d3077973ffdb65a37252e1c258'
+    '0x59d5517b77cc391999946118bd8c6800112f1046d35b5ae80db66524b3c6bc34'
   const block = await CITA.getBlockByHash({
     hash: hash,
     detialed: true,
@@ -128,14 +128,14 @@ test('get block history', async () => {
 
 test('get transaction detail', async () => {
   const HASH =
-    '0x75cfb052270979d927c696ebbbc6e7d96f93a416bbc753a1ad8ad1765211e0e5'
+    '0xf33c32f7b010a18c1a3b3d3b3bafac23a9ec69ea0c1f38deaee09a9202dc2253'
   const tx = await CITA.getTransaction(HASH)
   expect(tx.hash.startsWith('0x')).toBeTruthy()
 })
 
 test('get transaction detail and parse transaction correctly', async () => {
   const HASH =
-    '0x75cfb052270979d927c696ebbbc6e7d96f93a416bbc753a1ad8ad1765211e0e5'
+    '0xf33c32f7b010a18c1a3b3d3b3bafac23a9ec69ea0c1f38deaee09a9202dc2253'
   const tx = await CITA.getTransaction(HASH)
   expect(tx.basicInfo).toBeTruthy()
 })
@@ -145,6 +145,12 @@ test('get logs', async () => {
   if (logs.length) {
     expect(logs[0].topics.length).toBeTruthy()
   }
+})
+
+test('get meta data', async () => {
+  const metaData = await CITA.metaData({ blockNumber: '0x0' })
+  console.log(metaData)
+  expect(metaData.chainId).toBeTruthy()
 })
 
 // TODO: Eth Call

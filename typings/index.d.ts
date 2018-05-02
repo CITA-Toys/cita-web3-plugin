@@ -27,7 +27,27 @@ declare type BlockNumber = string
 declare type ID = number
 declare type Server = string
 
-declare type Result = string | object
+declare interface Block {
+  body: { transactions: Transaction[] }
+}
+declare interface Transaction {
+  blockHash: Hash
+  blockNumber: BlockNumber
+  content?: string
+  basicInfo?:
+    | string
+    | {
+        from: string
+        to: string
+        value: string
+        data: string
+      }
+  hash: Hash
+  index: string
+}
+
+declare type Result = string | object | Transaction
+
 declare interface JSONRPCError {
   code: string
   message: string

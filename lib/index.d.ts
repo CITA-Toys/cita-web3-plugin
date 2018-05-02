@@ -19,14 +19,24 @@ export declare enum CITA_METHODS {
     ETH_GET_FILTER_CHANGES = "eth_getFilterChanges",
     ETH_GET_FILTER_LOGS = "eth_getFilterLogs",
     CITA_GET_TRANSACTION_PROOF = "cita_getTransactionProof",
+    METADATA = "cita_getMetaData",
 }
-export declare type RPCParam = string | number | boolean | object;
+export declare type RPCParam = string | number | boolean | object | MetaData;
 export declare type SignedData = string;
 export declare type Hash = string;
 export declare type Detailed = boolean;
 export declare type BlockNumber = string;
 export declare type ID = number;
 export declare type Server = string;
+export interface MetaData {
+    chainId: number;
+    chainName: string;
+    operator: string;
+    website: string;
+    genesisTimestamp: number | string;
+    validators: Hash[];
+    blockInterval: number;
+}
 export interface Block {
     body: {
         transactions: Transaction[];
@@ -113,6 +123,9 @@ export declare class CITA {
         by: string;
         count: number;
     }) => Promise<(string | object)[]>;
+    metaData: ({ blockNumber }: {
+        blockNumber: string;
+    }) => Promise<string | object | Transaction | JSONRPCError>;
 }
 declare const citaWeb3Plugin: ({ Web3, server }: {
     Web3?: any;
