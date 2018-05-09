@@ -1,8 +1,13 @@
-const { default: CitaWeb3Plugin, JSONRPC } = require('../lib/')
+const {
+  default: CitaWeb3Plugin,
+  JSONRPC
+} = require('../lib/')
 
 const SERVER = 'http://47.75.129.215:1337'
 
-const { CITA } = CitaWeb3Plugin({
+const {
+  CITA
+} = CitaWeb3Plugin({
   server: SERVER,
 })
 
@@ -141,16 +146,28 @@ test('get transaction detail and parse transaction correctly', async () => {
 })
 
 test('get logs', async () => {
-  const logs = await CITA.getLogs({ topics: [] })
+  const logs = await CITA.getLogs({
+    topics: []
+  })
   if (logs.length) {
     expect(logs[0].topics.length).toBeTruthy()
   }
 })
 
 test('get meta data', async () => {
-  const metaData = await CITA.metaData({ blockNumber: '0x0' })
+  const metaData = await CITA.metaData({
+    blockNumber: '0x0'
+  })
   console.log(metaData)
   expect(metaData.chainId).toBeTruthy()
+})
+
+test(`get balance of ${'0x627306090abaB3A6e1400e9345bC60c78a8BEf57'}`, async () => {
+  const balance = await CITA.getBalance({
+    addr: '0x627306090abaB3A6e1400e9345bC60c78a8BEf57'
+  })
+
+  expect(balance.startsWith('0x')).toBeTruthy()
 })
 
 // TODO: Eth Call

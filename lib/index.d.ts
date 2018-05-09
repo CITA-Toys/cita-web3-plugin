@@ -18,6 +18,7 @@ export declare enum CITA_METHODS {
     ETH_UNINSTALL_FILTER = "eth_uninstallFilter",
     ETH_GET_FILTER_CHANGES = "eth_getFilterChanges",
     ETH_GET_FILTER_LOGS = "eth_getFilterLogs",
+    ETH_GET_BALANCE = "eth_getBalance",
     CITA_GET_TRANSACTION_PROOF = "cita_getTransactionProof",
     METADATA = "cita_getMetaData",
 }
@@ -125,6 +126,10 @@ export declare class CITA {
     }) => Promise<(string | object)[]>;
     metaData: ({ blockNumber }: {
         blockNumber: string;
+    }) => Promise<string | object | Transaction | JSONRPCError>;
+    getBalance: ({ addr, quantity, }: {
+        addr: string;
+        quantity: string;
     }) => Promise<string | object | Transaction | JSONRPCError>;
 }
 declare const citaWeb3Plugin: ({ Web3, server }: {
