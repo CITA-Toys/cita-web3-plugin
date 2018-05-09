@@ -129,7 +129,7 @@ export declare class CITA {
     }) => Promise<string | object | Transaction | JSONRPCError>;
     getBalance: ({ addr, quantity, }: {
         addr: string;
-        quantity: string;
+        quantity?: string | undefined;
     }) => Promise<string | object | Transaction | JSONRPCError>;
 }
 declare const citaWeb3Plugin: ({ Web3, server }: {
