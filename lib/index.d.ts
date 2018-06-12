@@ -1,5 +1,10 @@
 import { BlockNumber } from './index';
 import { AxiosInstance } from 'axios';
+export declare enum BlockTransactionInfo {
+    Hash = 0,
+    Detail = 1,
+    Receipt = 2,
+}
 export declare enum CITA_METHODS {
     NET_PEER_COUNT = "net_peerCount",
     CITA_BLOCK_NUMBER = "cita_blockNumber",
@@ -87,13 +92,13 @@ export declare class CITA {
     netPeerCount: () => Promise<string | object | Transaction | JSONRPCError>;
     getBlockNumber: () => Promise<string | object | Transaction | JSONRPCError>;
     sendTransaction: (signedData: string) => Promise<string | object | Transaction | JSONRPCError>;
-    getBlockByHash: ({ hash, detailed }: {
+    getBlockByHash: ({ hash, txInfo, }: {
         hash: string;
-        detailed: boolean;
+        txInfo: BlockTransactionInfo;
     }) => Promise<string | object>;
-    getBlockByNumber: ({ quantity, detailed, }: {
+    getBlockByNumber: ({ quantity, txInfo, }: {
         quantity: string;
-        detailed: boolean;
+        txInfo: BlockTransactionInfo;
     }) => Promise<string | object>;
     getTransactionReceipt: (hash: string) => Promise<string | object | Transaction | JSONRPCError>;
     getLogs: ({ topics, fromBlock, }?: {
