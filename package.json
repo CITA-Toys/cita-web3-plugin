@@ -15,17 +15,18 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "prepublish": "yarn run test && yarn run build"
+    "protoc": "protoc --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --proto_path=src/cita-proto --ts_out=./src/cita-proto --js_out=import_style=commonjs,binary:./src/cita-proto src/cita-proto/blockchain.proto",
+    "prepublish": "yarn run test && yarn run build && cp -r ./src/cita-proto ./lib"
   },
   "devDependencies": {
     "@types/node": "^9.6.1",
     "jest": "^22.4.3",
+    "ts-protoc-gen": "^0.7.3",
     "typescript": "^2.8.1"
   },
   "dependencies": {
     "@types/google-protobuf": "^3.2.7",
     "axios": "^0.18.0",
-    "cita-web3": "^0.5.7",
     "google-protobuf": "^3.5.0"
   }
 }

@@ -45,7 +45,7 @@ test('get block by number of hash', async () => {
   const blockNumber = await CITA.getBlockNumber()
   const block = await CITA.getBlockByNumber({
     quantity: blockNumber,
-    detailed: true,
+    txInfo: 1,
   })
   expect(block.header.number).toBe(blockNumber)
 })
@@ -64,7 +64,7 @@ test('get block by number of integer', async () => {
   const blockNumber = await CITA.getBlockNumber()
   const block = await CITA.getBlockByNumber({
     quantity: +blockNumber,
-    detailed: true,
+    txInfo: 1,
   })
   expect(block.header.number).toBe(blockNumber)
 })
@@ -73,7 +73,7 @@ test('get block by number of latest', async () => {
   expect.assertions(1)
   const block = await CITA.getBlockByNumber({
     quantity: 'latest',
-    detailed: true,
+    txInfo: 1,
   })
   expect(block.header.number.startsWith('0x')).toBeTruthy()
 })
@@ -82,39 +82,39 @@ test.skip('get block by number of earliest', async () => {
   expect.assertions(1)
   const block = await CITA.getBlockByNumber({
     quantity: 'earliest',
-    detailed: true,
+    txInfo: 1,
   })
   expect(block.header.number.startsWith('0x')).toBeTruthy()
 })
 
 test('get block by hash starts with 0x', async () => {
   const hash =
-    '0x59d5517b77cc391999946118bd8c6800112f1046d35b5ae80db66524b3c6bc34'
+    '0xf132f56c048a6dffac3950dada971a266925a18ce2595f59830fb9cf02a6e4d6'
   expect.assertions(1)
   const block = await CITA.getBlockByHash({
     hash,
-    detailed: true,
+    txInfo: 1,
   })
   expect(block.hash).toBe(hash)
 })
 
 test('get block by hash not starts with 0x', async () => {
   const hash =
-    '59d5517b77cc391999946118bd8c6800112f1046d35b5ae80db66524b3c6bc34'
+    'f132f56c048a6dffac3950dada971a266925a18ce2595f59830fb9cf02a6e4d6'
   expect.assertions(1)
   const block = await CITA.getBlockByHash({
     hash,
-    detailed: true,
+    txInfo: 1,
   })
   expect(block.hash).toBe(`0x${hash}`)
 })
 
 test.skip('get block by hash and parse transaction correctly', async () => {
   const hash =
-    '0x59d5517b77cc391999946118bd8c6800112f1046d35b5ae80db66524b3c6bc34'
+    '0xf132f56c048a6dffac3950dada971a266925a18ce2595f59830fb9cf02a6e4d6'
   const block = await CITA.getBlockByHash({
     hash: hash,
-    detialed: true,
+    txInfo: 1,
   })
   expect(block.body.transactions[0].basicInfo.to).toBeTruthy()
 })
@@ -133,14 +133,14 @@ test('get block history', async () => {
 
 test('get transaction detail', async () => {
   const HASH =
-    '0xf33c32f7b010a18c1a3b3d3b3bafac23a9ec69ea0c1f38deaee09a9202dc2253'
+    '0x19aff12bd3c1eab52477e2968f13dd87b0464d68429ab875005abfbee4b667cb'
   const tx = await CITA.getTransaction(HASH)
   expect(tx.hash.startsWith('0x')).toBeTruthy()
 })
 
 test('get transaction detail and parse transaction correctly', async () => {
   const HASH =
-    '0xf33c32f7b010a18c1a3b3d3b3bafac23a9ec69ea0c1f38deaee09a9202dc2253'
+    '0x19aff12bd3c1eab52477e2968f13dd87b0464d68429ab875005abfbee4b667cb'
   const tx = await CITA.getTransaction(HASH)
   expect(tx.basicInfo).toBeTruthy()
 })
