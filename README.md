@@ -9,7 +9,7 @@ Promise based [CITA RPC](https://cryptape.github.io/cita/usage-guide/rpc/) toolk
 
 # Features
 
-* Supports the Promise API
+- Supports the Promise API
 
 # Installing
 
@@ -24,7 +24,15 @@ import web3Plugin from '@cita/web3-plugin'
 
 const SERVER = 'localhost:1337'
 
-const { CITA } = web3Plugin({ server: SERVER })
+const { Nervos } = web3Plugin({ server: SERVER })
+
+/**
+ * @function metadata
+ * @description request metadata of specified chain
+ * @param {{blockNumber}}
+ * @return {Metadata}
+ */
+Nervos.metadata({blockNumer: '0x0'}).then(metadata => console.log(metadata))
 
 /**
  * @function netPeerCount
@@ -32,7 +40,7 @@ const { CITA } = web3Plugin({ server: SERVER })
  * @param null
  * @returns {string} peerCount
  */
-CITA.netPeerCount().then(count => console.log(count))
+Nervos.netPeerCount().then(count => console.log(count))
 
 /**
  * @function getBlockByNumber
@@ -41,7 +49,7 @@ CITA.netPeerCount().then(count => console.log(count))
  * @param {boolean} detialed - return transaction list if true, otherwise return hash of transaction
  * @returns {object} block
  */
-CITA.getBlockByNumber({
+Nervos.getBlockByNumber({
   quantity: blockNumber
   detailed: true,
 }).then(block => console.log(block))
@@ -53,7 +61,7 @@ CITA.getBlockByNumber({
  * @param {boolean} detailed - return transaction list if true, otherwise return hash of transaction
  * @returns {object} block
  */
-CITA.getBlockByHash({
+Nervos.getBlockByHash({
   hash: blockHash,
   detailed: true
 }).then(block => console.log(block))
@@ -62,14 +70,55 @@ CITA.getBlockByHash({
 
 /**
  * @function getBlockHistory
- * @description Retrieve blocks of height from (by - count + 1) to by
+ * @description retrieve blocks of height from (by - count + 1) to by
  * @param {by: string, count: number} - by: the startpoint of history, count: the count of records to retrieve
  * @return {array} list of block
  */
-const blocks = await CITA.getBlockHistory({
+Nervos.getBlockHistory({
   by: '0x4bb99',
   count: 5,
 }).then(blocks => console.log(blocks))
+
+/**
+ * @function getTransaction
+ * @description request transaction detail
+ * @param {string} transactionHash
+ * @return {object} Transaction
+ */
+Nervos.getTransaction('0x...').then(transaction => console.log(transaction))
+
+/**
+ * @function getLogs
+ * @description requestion log on specified block
+ * @param {{topics: Topic[]}}
+ * @return {object} Logs
+ */
+Nervos.getLogs({topics: []}).then(logs => console.log(logs))
+
+/**
+ * @function getBalance
+ * @description get balance of specified address
+ * @param {{addr}} - addr: specified address
+ * @return {Balance}
+ */
+Nervos.getBalance({addr: '0x...'}).then(balance => console.log(balance))
+
+/**
+ * @function getTransactionCount
+ * @description get transaction count of specified addr
+ * @param {{addr, blockNumber}}
+ * @return {TransactionCount}
+ */
+Nervos.getTransactionCount({addr: '0x..', blockNumber: 'latest'}).then(count => console.log(count))
+
+/**
+ * @function getTransactionProof
+ * @description get transaction proof of specified transaction hash
+ * @param {string} trasnactionHash
+ * @return {string} transaction proof
+ */
+
+Nervos.getTransactionProof('0x...').then(proof => console.log(proof))
 
 
 /**
@@ -79,5 +128,5 @@ const blocks = await CITA.getBlockHistory({
  * @return undefined
  */
 
-CITA.setServer('http://localhost:1301')
+Nervos.setServer('http://localhost:1301')
 ```
