@@ -1,6 +1,6 @@
 import { Transaction, Block } from '../index'
 
-const pb = require('../../cita-proto/blockchain_pb.js')
+const pb = require('../../proto-ts/blockchain_pb.js')
 
 const hexToBytes = (hex: string) => {
   let _hex = hex.startsWith('0x') ? hex.slice(2) : hex
