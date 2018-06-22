@@ -1,3 +1,6 @@
 [submodule "src/cita-proto"]
 	path = src/cita-proto
 	url = https://github.com/cryptape/cita-proto
+[submodule "lib/cita-proto"]
+	path = src/cita-proto
+	url = https://github.com/cryptape/cita-proto
