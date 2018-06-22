@@ -17,7 +17,7 @@
     "build": "tsc",
     "test": "jest",
     "protoc": "protoc --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --proto_path=cita-proto --ts_out=cita-proto --js_out=import_style=commonjs,binary:./cita-proto cita-proto/blockchain.proto",
-    "prepublish": "yarn run test && yarn run build && cp -r ./src/cita-proto ./lib"
+    "prepublish": "yarn run build && yarn run test"
   },
   "devDependencies": {
     "@types/node": "^9.6.1",
