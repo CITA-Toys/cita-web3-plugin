@@ -1,4 +1,4 @@
-import { Transaction, Block } from '../index';
+import { Transaction, Block } from '../typings';
 export declare const toHex: (num: number) => string;
 export declare const blockNumberFormatter: (num: string | number) => string;
 export declare const hashFormatter: (hash: string) => string;

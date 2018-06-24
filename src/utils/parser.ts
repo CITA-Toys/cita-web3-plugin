@@ -1,4 +1,4 @@
-import { Transaction, Block } from '../index'
+import { Transaction, Block } from '../typings'
 
 const pb = require('../../proto-ts/blockchain_pb.js')
 
