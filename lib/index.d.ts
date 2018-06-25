@@ -1,5 +1,7 @@
 import { AxiosInstance } from 'axios';
-import { IJSONRPC, IJSONRPCParams, Server, Result, JSONRPCError, BlockTransactionInfo, Transaction } from './typings';
+export * from './typings';
+import { BlockNumber, IJSONRPC, IJSONRPCParams, Server, Result, JSONRPCError, IJSONRPCResponse, METHODS, SignedData, Hash, BlockTransactionInfo, Block, Transaction } from './typings';
+export { BlockNumber, IJSONRPC, IJSONRPCParams, Server, Result, JSONRPCError, IJSONRPCResponse, METHODS, SignedData, Hash, BlockTransactionInfo, Block, Transaction };
 export declare const JSONRPC: ({ method, params, id, }: IJSONRPCParams) => IJSONRPC;
 export declare class CITA {
     citaFetchIns: AxiosInstance;

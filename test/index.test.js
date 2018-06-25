@@ -3,7 +3,7 @@ const {
   JSONRPC
 } = require('../lib/')
 
-const SERVER = 'http://47.94.105.230:1337'
+const SERVER = '121.196.200.225:1337'
 const TX_HASH =
   '0x479ba8e04d5f514d1aced5e8f7f5d1b95389334f8c5a447fc10e8d3e29f8c22b'
 const ACCOUNT = '0xda8e4561f2bfb73ef1160946694ec34e17e8f920'

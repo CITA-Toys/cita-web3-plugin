@@ -6,6 +6,7 @@ import {
   transactionParser,
   blockParser,
 } from './utils/parser'
+export * from './typings'
 import {
   BlockNumber,
   IJSONRPC,
@@ -21,6 +22,21 @@ import {
   Block,
   Transaction,
 } from './typings'
+export {
+  BlockNumber,
+  IJSONRPC,
+  IJSONRPCParams,
+  Server,
+  Result,
+  JSONRPCError,
+  IJSONRPCResponse,
+  METHODS,
+  SignedData,
+  Hash,
+  BlockTransactionInfo,
+  Block,
+  Transaction,
+}
 
 export const JSONRPC = ({
   method,
