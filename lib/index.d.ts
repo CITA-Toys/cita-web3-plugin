@@ -55,6 +55,11 @@ export declare class CITA {
         addr: string;
         quantity?: string | number | undefined;
     }) => Promise<string | object | Transaction | JSONRPCError>;
+    newFilter: (topics: string[]) => Promise<string | object | Transaction | JSONRPCError>;
+    newBlockFilter: () => Promise<string | object | Transaction | JSONRPCError>;
+    uninstallFilter: (filterId: string) => Promise<string | object | Transaction | JSONRPCError>;
+    getFilterChanges: (filterId: string) => Promise<string | object | Transaction | JSONRPCError>;
+    getFilterLogs: (filterId: string) => Promise<string | object | Transaction | JSONRPCError>;
 }
 declare const nervosWeb3Plugin: ({ Web3, server }: {
     Web3?: any;

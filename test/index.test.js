@@ -3,7 +3,7 @@ const {
   JSONRPC
 } = require('../lib/')
 
-const SERVER = '121.196.200.225:1337'
+const SERVER = 'http://121.196.200.225:1337'
 const TX_HASH =
   '0x479ba8e04d5f514d1aced5e8f7f5d1b95389334f8c5a447fc10e8d3e29f8c22b'
 const ACCOUNT = '0xda8e4561f2bfb73ef1160946694ec34e17e8f920'
@@ -119,8 +119,14 @@ test('get block by hash not starts with 0x', async () => {
 })
 
 test.skip('get block by hash and parse transaction correctly', async () => {
-  const hash =
-    '0xf132f56c048a6dffac3950dada971a266925a18ce2595f59830fb9cf02a6e4d6'
+  const latest = await Nervos.getBlockByNumber({
+    quantity: 'latest',
+    txInfo: 1,
+  })
+  // const hash = '0xf132f56c048a6dffac3950dada971a266925a18ce2595f59830fb9cf02a6e4d6'
+  const {
+    hash
+  } = latest
   const block = await Nervos.getBlockByHash({
     hash: hash,
     txInfo: 1,
@@ -140,13 +146,13 @@ test('get block history', async () => {
   expect(blocks.every(block => block.hash.startsWith('0x'))).toBeTruthy()
 })
 
-test('get transaction detail', async () => {
+test.skip('get transaction detail', async () => {
   const HASH = TX_HASH
   const tx = await Nervos.getTransaction(HASH)
   expect(tx.hash.startsWith('0x')).toBeTruthy()
 })
 
-test('get transaction detail and parse transaction correctly', async () => {
+test.skip('get transaction detail and parse transaction correctly', async () => {
   const HASH = TX_HASH
   const tx = await Nervos.getTransaction(HASH)
   expect(tx.basicInfo).toBeTruthy()
@@ -184,11 +190,31 @@ test(`get transaction count of ${ACCOUNT}`, async () => {
   expect(count).not.toBeUndefined()
 })
 
-test(`get transaction proof`, async () => {
+test.skip(`get transaction proof`, async () => {
   const proof = await Nervos.getTransactionProof(TX_HASH)
   expect(proof.startsWith('0x')).toBe(true)
 })
 
-// TODO: Eth Call
-// TODO: eth_getCode
-// TODO: eth_getAbi
+test('new filter', async () => {
+  const id = await Nervos.newFilter([])
+  expect(id.startsWith('0x')).toBe(true)
+})
+
+test('new block filter', async () => {
+  const id = await Nervos.newBlockFilter()
+  expect(id.startsWith('0x')).toBe(true)
+})
+
+
+test('uninstall filter', async () => {
+  const id = await Nervos.newBlockFilter()
+  const result = await Nervos.uninstallFilter(id)
+  expect(result).toBe(true)
+})
+
+test('get filter changes', async () => {
+  const id = await Nervos.newBlockFilter()
+  const logArray = await Nervos.getFilterChanges(id)
+  const isArray = Array.isArray(logArray)
+  expect(isArray).toBe(true)
+})

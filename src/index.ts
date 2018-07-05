@@ -213,11 +213,6 @@ export class CITA {
       method: METHODS.GET_ABI,
       params: [addr, blockNumberFormatter(blockNumber)],
     })
-  // TODO: newFilter
-  // TODO: newBlockFilter
-  // TODO: uninstallFilter
-  // TODO: getFilterChanges
-  // TODO: getFilterLogs
   getTransactionProof = (hash: Hash) =>
     this.citaFetch({
       method: METHODS.GET_TRANSACTION_PROOF,
@@ -273,6 +268,60 @@ export class CITA {
       method: METHODS.GET_BALANCE,
       params: [addr, blockNumberFormatter(quantity)],
     })
+
+  /**
+   * @memberof CITA
+   * @method newFilter
+   * @desc create new filter
+   * @param {Array<topic>} topics
+   * @return {string} filterId
+   */
+  newFilter = (topics: string[]) =>
+    this.citaFetch({
+      method: METHODS.NEW_FILTER,
+      params: [{ topics }],
+    })
+
+  /**
+   * @memberof CITA
+   * @method newBlockFilter
+   * @desc create new block filter
+   * @param None
+   * @return {string} filterId
+   */
+  newBlockFilter = () =>
+    this.citaFetch({
+      method: METHODS.NEW_BLOCK_FILTER,
+      params: [],
+    })
+
+  /**
+   * @memberof CITA
+   * @method uninstallFilter
+   * @desc uninstall filter
+   * @param {string} filterId
+   * @return {boolean} success
+   */
+  uninstallFilter = (filterId: string) =>
+    this.citaFetch({
+      method: METHODS.UNINSTALL_FILTER,
+      params: [filterId],
+    })
+
+  /**
+   * @memberof CITA
+   * @method getFilterChanges
+   * @desc get filter changes
+   * @param {string} filterId
+   * @return {Array<Result>} logArray
+   */
+  getFilterChanges = (filterId: string) =>
+    this.citaFetch({
+      method: METHODS.GET_FILTER_CHANGES,
+      params: [filterId],
+    })
+
+  getFilterLogs = this.getFilterChanges
 }
 
 const nervosWeb3Plugin = ({ Web3, server }: { Web3?: any; server: Server }) => {

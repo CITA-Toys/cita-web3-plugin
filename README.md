@@ -122,11 +122,47 @@ Nervos.getTransactionProof('0x...').then(proof => console.log(proof))
 
 
 /**
+ * @function newFilter
+ * @desc create new filter
+ * @param {Array<topic>} topics
+ * @return {string} filterId
+ */
+Nervos.newFilter([])
+
+
+/**
+ * @function newBlockFilter
+ * @desc create new block filter
+ * @param None
+ * @return {string} filterId
+ */
+Nervos.newBlockFilter()
+
+ /**
+ * @function uninstallFilter
+ * @desc uninstall filter
+ * @param {string} filterId
+ * @return {boolean} success
+ */
+
+Nervos.uninstallFilter(id)
+
+/**
+ * @function getFilterChanges
+ * @desc get filter changes
+ * @param {string} filterId
+ * @return {Array<Result>} logArray
+ */
+Nervos.getFilterChanges(id)
+
+
+/**
  * @function setServer
  * @description set server
  * @param {string} server
  * @return undefined
  */
+
 
 Nervos.setServer('http://localhost:1301')
 ```
