@@ -10,7 +10,7 @@ export declare class CITA {
     setServer: (server: string) => void;
     netPeerCount: () => Promise<string | object | Transaction | JSONRPCError>;
     getBlockNumber: () => Promise<string | object | Transaction | JSONRPCError>;
-    sendTransaction: (signedData: string) => Promise<string | object | Transaction | JSONRPCError>;
+    sendSignedTransaction: (signedData: string) => Promise<string | object | Transaction | JSONRPCError>;
     getBlockByHash: ({ hash, txInfo, }: {
         hash: string;
         txInfo: BlockTransactionInfo;
