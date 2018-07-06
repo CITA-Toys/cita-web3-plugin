@@ -98,9 +98,9 @@ export class CITA {
       params: [],
     })
 
-  sendTransaction = (signedData: SignedData) =>
+  sendSignedTransaction = (signedData: SignedData) =>
     this.citaFetch({
-      method: METHODS.SEND_TRANSACTION,
+      method: METHODS.SEND_RAW_TRANSACTION,
       params: [signedData],
     })
   getBlockByHash = ({

@@ -7,7 +7,7 @@ export enum BlockTransactionInfo {
 export enum METHODS {
   PEER_COUNT = 'peerCount',
   BLOCK_NUMBER = 'blockNumber',
-  SEND_TRANSACTION = 'sendTransaction',
+  SEND_RAW_TRANSACTION = 'sendRawTransaction',
   GET_BLOCK_BY_HASH = 'getBlockByHash',
   GET_BLOCK_BY_NUMBER = 'getBlockByNumber',
   GET_TRANSACTION_RECEIPT = 'getTransactionReceipt',

@@ -155,6 +155,14 @@ Nervos.uninstallFilter(id)
  */
 Nervos.getFilterChanges(id)
 
+/**
+ * @function sendSignedTransaction
+ * @desc send signed transaction
+ * @param {string} signedTransaction
+ * @return {object}
+ */
+Nervos.sendSignedTransaction(signedTransaction)
+
 
 /**
  * @function setServer
