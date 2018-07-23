@@ -1,71 +1,71 @@
 import { AxiosInstance } from 'axios';
-export * from './typings';
-import { BlockNumber, IJSONRPC, IJSONRPCParams, Server, Result, JSONRPCError, IJSONRPCResponse, METHODS, SignedData, Hash, BlockTransactionInfo, Block, Transaction } from './typings';
-export { BlockNumber, IJSONRPC, IJSONRPCParams, Server, Result, JSONRPCError, IJSONRPCResponse, METHODS, SignedData, Hash, BlockTransactionInfo, Block, Transaction };
-export declare const JSONRPC: ({ method, params, id, }: IJSONRPCParams) => IJSONRPC;
-export declare class CITA {
+export { BasicTypes, RpcRequest, RpcResult, Chain, METHODS, BlockTransactionInfo } from './typings';
+import { RpcRequest, RpcResult, Chain, BlockTransactionInfo } from './typings';
+export declare const JSONRPC: ({ method, params, id, }: RpcRequest.Params) => RpcRequest.Request;
+export declare class Nervos {
+    server: string;
     citaFetchIns: AxiosInstance;
-    citaFetch: (config: IJSONRPCParams) => Promise<Result | JSONRPCError>;
-    constructor(server: Server);
+    citaFetch: (config: RpcRequest.Params) => Promise<RpcResult.Result>;
+    constructor(server: string);
     setServer: (server: string) => void;
-    netPeerCount: () => Promise<string | object | Transaction | JSONRPCError>;
-    getBlockNumber: () => Promise<string | object | Transaction | JSONRPCError>;
-    sendSignedTransaction: (signedData: string) => Promise<string | object | Transaction | JSONRPCError>;
+    netPeerCount: () => Promise<string>;
+    getBlockNumber: () => Promise<string>;
+    sendSignedTransaction: (signedData: string) => Promise<RpcResult.sendRawTransaction>;
     getBlockByHash: ({ hash, txInfo, }: {
         hash: string;
         txInfo: BlockTransactionInfo;
-    }) => Promise<string | object>;
+    }) => Promise<RpcResult.Result>;
     getBlockByNumber: ({ quantity, txInfo, }: {
-        quantity: string | number;
+        quantity: string;
         txInfo: BlockTransactionInfo;
-    }) => Promise<string | object>;
-    getTransactionReceipt: (hash: string) => Promise<string | object | Transaction | JSONRPCError>;
+    }) => Promise<RpcResult.Result>;
+    getTransactionReceipt: (hash: string) => Promise<Chain.TransactionReceipt>;
     getLogs: ({ topics, fromBlock, }?: {
         topics: string[];
-        fromBlock: string | number;
-    }) => Promise<string | object | Transaction | JSONRPCError>;
+        fromBlock: string;
+    }) => Promise<Chain.Log[]>;
     ethCall: ({ from, to, data, blockNumber, }: {
         from: string;
         to: string;
         data: string;
-        blockNumber: string | number;
-    }) => Promise<string | object | Transaction | JSONRPCError>;
-    getTransaction: (hash: string) => Promise<Transaction>;
+        blockNumber: string;
+    }) => Promise<RpcResult.Result>;
+    getTransaction: (hash: string) => Promise<Chain.TransactionInBlock>;
     getTransactionCount: ({ addr, blockNumber, }: {
         addr: string;
-        blockNumber: string | number;
-    }) => Promise<string | object | Transaction | JSONRPCError>;
+        blockNumber: string;
+    }) => Promise<string>;
     getCode: ({ contractAddr, blockNumber, }: {
         contractAddr: string;
-        blockNumber: string | number;
-    }) => Promise<string | object | Transaction | JSONRPCError>;
-    getAbi: ({ addr, blockNumber }: {
-        addr: string;
-        blockNumber: string | number;
-    }) => Promise<string | object | Transaction | JSONRPCError>;
-    getTransactionProof: (hash: string) => Promise<string | object | Transaction | JSONRPCError>;
-    getBlockHistory: ({ by, count, }: {
-        by: string | number;
-        count: number;
-    }) => Promise<(string | object)[]>;
-    metadata: ({ blockNumber }: {
         blockNumber: string;
-    }) => Promise<string | object | Transaction | JSONRPCError>;
+    }) => Promise<string>;
+    getAbi: ({ addr, blockNumber, }: {
+        addr: string;
+        blockNumber: string;
+    }) => Promise<string>;
+    getTransactionProof: (hash: string) => Promise<string>;
+    getBlockHistory: ({ by, count, }: {
+        by: string;
+        count: number;
+    }) => Promise<Chain.Block<Chain.TransactionInBlock>[]>;
+    metadata: ({ blockNumber, }: {
+        blockNumber: string;
+    }) => Promise<Chain.MetaData>;
     getBalance: ({ addr, quantity, }: {
         addr: string;
-        quantity?: string | number | undefined;
-    }) => Promise<string | object | Transaction | JSONRPCError>;
-    newFilter: (topics: string[]) => Promise<string | object | Transaction | JSONRPCError>;
-    newBlockFilter: () => Promise<string | object | Transaction | JSONRPCError>;
-    uninstallFilter: (filterId: string) => Promise<string | object | Transaction | JSONRPCError>;
-    getFilterChanges: (filterId: string) => Promise<string | object | Transaction | JSONRPCError>;
-    getFilterLogs: (filterId: string) => Promise<string | object | Transaction | JSONRPCError>;
+        quantity?: string | undefined;
+    }) => Promise<string>;
+    newFilter: (topics: string[]) => Promise<string>;
+    newBlockFilter: () => Promise<string>;
+    uninstallFilter: (filterId: string) => Promise<boolean>;
+    getFilterChanges: (filterId: string) => Promise<Chain.Log[]>;
+    getFilterLogs: (filterId: string) => Promise<Chain.Log[]>;
 }
 declare const nervosWeb3Plugin: ({ Web3, server }: {
     Web3?: any;
     server: string;
 }) => {
     web3: any;
-    Nervos: CITA;
+    Nervos: Nervos;
 };
 export default nervosWeb3Plugin;
