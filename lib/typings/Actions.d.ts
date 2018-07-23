@@ -1,7 +1,7 @@
 export declare enum BlockTransactionInfo {
     Hash = 0,
     Detail = 1,
-    Receipt = 2,
+    Receipt = 2
 }
 export declare enum METHODS {
     PEER_COUNT = "peerCount",
@@ -23,5 +23,5 @@ export declare enum METHODS {
     GET_FILTER_LOGS = "getFilterLogs",
     GET_BALANCE = "getBalance",
     GET_TRANSACTION_PROOF = "getTransactionProof",
-    METADATA = "getMetaData",
+    METADATA = "getMetaData"
 }

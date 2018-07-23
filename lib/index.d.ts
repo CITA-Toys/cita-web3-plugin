@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-export { BasicTypes, RpcRequest, RpcResult, Chain, METHODS, BlockTransactionInfo } from './typings';
+export { BasicTypes, RpcRequest, RpcResult, Chain, METHODS, BlockTransactionInfo, } from './typings';
 import { RpcRequest, RpcResult, Chain, BlockTransactionInfo } from './typings';
 export declare const JSONRPC: ({ method, params, id, }: RpcRequest.Params) => RpcRequest.Request;
 export declare class Nervos {

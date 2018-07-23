@@ -1,18 +1,8 @@
 const {
-  default: NervosWeb3Plugin,
-  JSONRPC
-} = require('../lib/')
-
-const SERVER = 'http://121.196.200.225:1337'
-const TX_HASH =
-  '0x479ba8e04d5f514d1aced5e8f7f5d1b95389334f8c5a447fc10e8d3e29f8c22b'
-const ACCOUNT = '0xda8e4561f2bfb73ef1160946694ec34e17e8f920'
-
-const {
-  Nervos
-} = NervosWeb3Plugin({
-  server: SERVER,
-})
+  address,
+  Nervos,
+  JSONRPC,
+} = require('./config')
 
 test('Form RPC Request', () => {
   const id = Math.round(Math.random() * 100)
@@ -53,14 +43,6 @@ test('get block by number of hash', async () => {
   expect(+block.header.number).toBe(+blockNumber)
 })
 
-test.skip('get block by number and parse transaction correctly', async () => {
-  const blockNumber = '0x61ed8'
-  const block = await Nervos.getBlockByNumber({
-    quantity: blockNumber,
-    detialed: true,
-  })
-  expect(block.body.transactions[0].basicInfo.to).toBeTruthy()
-})
 
 test('get block by number of integer', async () => {
   expect.assertions(1)
@@ -81,7 +63,7 @@ test('get block by number of latest', async () => {
   expect(block.header.number).toBeTruthy()
 })
 
-test.skip('get block by number of earliest', async () => {
+test('get block by number of earliest', async () => {
   expect.assertions(1)
   const block = await Nervos.getBlockByNumber({
     quantity: 'earliest',
@@ -118,22 +100,6 @@ test('get block by hash not starts with 0x', async () => {
   expect(block.hash).toBe(`0x${hash}`)
 })
 
-test.skip('get block by hash and parse transaction correctly', async () => {
-  const latest = await Nervos.getBlockByNumber({
-    quantity: 'latest',
-    txInfo: 1,
-  })
-  // const hash = '0xf132f56c048a6dffac3950dada971a266925a18ce2595f59830fb9cf02a6e4d6'
-  const {
-    hash
-  } = latest
-  const block = await Nervos.getBlockByHash({
-    hash: hash,
-    txInfo: 1,
-  })
-  expect(block.body.transactions[0].basicInfo.to).toBeTruthy()
-})
-
 test('get block history', async () => {
   const COUNT = 5
   expect.assertions(2)
@@ -146,17 +112,6 @@ test('get block history', async () => {
   expect(blocks.every(block => block.hash.startsWith('0x'))).toBeTruthy()
 })
 
-test.skip('get transaction detail', async () => {
-  const HASH = TX_HASH
-  const tx = await Nervos.getTransaction(HASH)
-  expect(tx.hash.startsWith('0x')).toBeTruthy()
-})
-
-test.skip('get transaction detail and parse transaction correctly', async () => {
-  const HASH = TX_HASH
-  const tx = await Nervos.getTransaction(HASH)
-  expect(tx.basicInfo).toBeTruthy()
-})
 
 test('get logs', async () => {
   const logs = await Nervos.getLogs({
@@ -174,26 +129,22 @@ test('get meta data', async () => {
   expect(metaData.chainId).toBeTruthy()
 })
 
-test(`get balance of ${ACCOUNT}`, async () => {
+test(`get balance of ${address}`, async () => {
   const balance = await Nervos.getBalance({
-    addr: ACCOUNT,
+    addr: address,
   })
 
   expect(balance.startsWith('0x')).toBeTruthy()
 })
 
-test(`get transaction count of ${ACCOUNT}`, async () => {
+test(`get transaction count of ${address}`, async () => {
   const count = await Nervos.getTransactionCount({
-    addr: ACCOUNT,
+    addr: address,
     blockNumber: 'latest',
   })
   expect(count).not.toBeUndefined()
 })
 
-test.skip(`get transaction proof`, async () => {
-  const proof = await Nervos.getTransactionProof(TX_HASH)
-  expect(proof.startsWith('0x')).toBe(true)
-})
 
 test('new filter', async () => {
   const id = await Nervos.newFilter([])
