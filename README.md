@@ -50,7 +50,7 @@ Nervos.netPeerCount().then(count => console.log(count))
  * @returns {object} block
  */
 Nervos.getBlockByNumber({
-  quantity: blockNumber
+  quantity: blockNumber,
   detailed: true,
 }).then(block => console.log(block))
 
