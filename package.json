@@ -20,6 +20,7 @@
     "prepublish": "yarn run build && yarn run test"
   },
   "devDependencies": {
+    "@nervos/signer": "^1.0.21",
     "@types/node": "^9.6.1",
     "jest": "^22.4.3",
     "ts-protoc-gen": "^0.7.3",
