@@ -1,28 +1,8 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
-import {
-  toHex,
-  blockNumberFormatter,
-  hashFormatter,
-  transactionParser,
-  blockParser,
-} from './utils/parser'
-export {
-  BasicTypes,
-  RpcRequest,
-  RpcResult,
-  Chain,
-  METHODS,
-  BlockTransactionInfo,
-} from './typings'
+import { toHex, blockNumberFormatter, hashFormatter, transactionParser, blockParser } from './utils/parser'
+export { BasicTypes, RpcRequest, RpcResult, Chain, METHODS, BlockTransactionInfo } from './typings'
 
-import {
-  BasicTypes,
-  RpcRequest,
-  RpcResult,
-  METHODS,
-  Chain,
-  BlockTransactionInfo,
-} from './typings'
+import { BasicTypes, RpcRequest, RpcResult, METHODS, Chain, BlockTransactionInfo } from './typings'
 export const JSONRPC = ({
   method,
   params = [],
@@ -90,13 +70,7 @@ export class Nervos {
       params: [signedData],
     }) as Promise<RpcResult.sendRawTransaction>
   // TODO: Parsed Block Type
-  public getBlockByHash = ({
-    hash,
-    txInfo,
-  }: {
-    hash: BasicTypes.Hash
-    txInfo: BlockTransactionInfo
-  }) =>
+  public getBlockByHash = ({ hash, txInfo }: { hash: BasicTypes.Hash; txInfo: BlockTransactionInfo }) =>
     this.citaFetch({
       method: METHODS.GET_BLOCK_BY_HASH,
       params: [hashFormatter(hash), !!txInfo],
@@ -130,10 +104,7 @@ export class Nervos {
       params: [hashFormatter(hash)],
     }) as Promise<RpcResult.TransactionReceipt>
   public getLogs = (
-    {
-      topics = [],
-      fromBlock = '0x0',
-    }: { topics: BasicTypes.Hash[]; fromBlock: BasicTypes.BlockNumber } = {
+    { topics = [], fromBlock = '0x0' }: { topics: BasicTypes.Hash[]; fromBlock: BasicTypes.BlockNumber } = {
       topics: [],
       fromBlock: '0x0',
     },
@@ -148,26 +119,19 @@ export class Nervos {
       ],
     }) as Promise<RpcResult.Logs>
   public ethCall = ({
-    from,
-    to,
-    data,
+    callObject,
     blockNumber,
   }: {
-    from: BasicTypes.Hash
-    to: BasicTypes.Hash
-    data: string
+    callObject: {
+      from?: BasicTypes.Hash
+      to: BasicTypes.Hash
+      data: string
+    }
     blockNumber: BasicTypes.BlockNumber
   }) =>
     this.citaFetch({
       method: METHODS.CALL,
-      params: [
-        {
-          from,
-          to,
-          data,
-        },
-        blockNumberFormatter(blockNumber),
-      ],
+      params: [callObject, blockNumberFormatter(blockNumber)],
     })
   //TODO: Parsed Transaction
   public getTransaction = (hash: BasicTypes.Hash) =>
@@ -197,18 +161,12 @@ export class Nervos {
       method: METHODS.GET_CODE,
       params: [contractAddr, blockNumberFormatter(blockNumber)],
     }) as Promise<RpcResult.Code>
-  getAbi = ({
-    addr,
-    blockNumber,
-  }: {
-    addr: BasicTypes.Hash
-    blockNumber: BasicTypes.BlockNumber
-  }) =>
+  public getAbi = ({ addr, blockNumber }: { addr: BasicTypes.Hash; blockNumber: BasicTypes.BlockNumber }) =>
     this.citaFetch({
       method: METHODS.GET_ABI,
       params: [addr, blockNumberFormatter(blockNumber)],
     }) as Promise<RpcResult.Abi>
-  getTransactionProof = (hash: BasicTypes.Hash) =>
+  public getTransactionProof = (hash: BasicTypes.Hash) =>
     this.citaFetch({
       method: METHODS.GET_TRANSACTION_PROOF,
       params: [hash],
@@ -219,13 +177,7 @@ export class Nervos {
    * @param {object} {by: string, count: integer} - by: height, to: count of record
    * @return Blokc[]
    */
-  public getBlockHistory = ({
-    by,
-    count = 10,
-  }: {
-    by: BasicTypes.BlockNumber
-    count: number
-  }) => {
+  public getBlockHistory = ({ by, count = 10 }: { by: BasicTypes.BlockNumber; count: number }) => {
     let blockNumbers = []
     for (let i = 0; i < count; i++) {
       blockNumbers.push(toHex(+by - i))
@@ -240,11 +192,7 @@ export class Nervos {
     ) as Promise<RpcResult.BlockByNumber[]>
   }
 
-  public metadata = ({
-    blockNumber = 'latest',
-  }: {
-    blockNumber: BasicTypes.Hash
-  }) =>
+  public metadata = ({ blockNumber = 'latest' }: { blockNumber: BasicTypes.Hash }) =>
     this.citaFetch({
       method: METHODS.METADATA,
       params: [blockNumber],
@@ -256,13 +204,7 @@ export class Nervos {
    * @param {string} addr - account address
    * @param {string} quantity - block number
    */
-  public getBalance = ({
-    addr,
-    quantity = 'latest',
-  }: {
-    addr: BasicTypes.Hash
-    quantity?: BasicTypes.BlockNumber
-  }) =>
+  public getBalance = ({ addr, quantity = 'latest' }: { addr: BasicTypes.Hash; quantity?: BasicTypes.BlockNumber }) =>
     this.citaFetch({
       method: METHODS.GET_BALANCE,
       params: [addr, blockNumberFormatter(quantity)],

@@ -169,3 +169,4 @@ test('get filter changes', async () => {
   const isArray = Array.isArray(logArray)
   expect(isArray).toBe(true)
 })
+// TODO: ethCall
