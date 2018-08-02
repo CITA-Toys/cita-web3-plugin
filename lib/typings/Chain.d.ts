@@ -19,12 +19,20 @@ export declare namespace Chain {
     interface BlockHeader {
         timestamp: number;
         prevHash: BasicTypes.Hash;
+        number: string;
+        gasUsed: string;
+        proposer: BasicTypes.Hash;
+        receiptsRoot: BasicTypes.Hash;
+        stateRoot: BasicTypes.Hash;
+        transactionsRoot: BasicTypes.Hash;
         proof: {
-            proposal: BasicTypes.Hash;
-            height: number;
-            round: number;
-            commits: {
-                [hash: string]: BasicTypes.Hash;
+            Tendermint: {
+                proposal: BasicTypes.Hash;
+                height: number;
+                round: number;
+                commits: {
+                    [hash: string]: BasicTypes.Hash;
+                };
             };
         };
     }
@@ -69,6 +77,7 @@ export declare namespace Chain {
         chainId: number;
         chainName: string;
         operator: string;
+        website: string;
         genesisTimestamp: number;
         validators: BasicTypes.Hash[];
         blockInterval: number;
