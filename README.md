@@ -5,7 +5,7 @@
 
 # CITA-Web3-Plugin
 
-Promise based [CITA RPC](https://cryptape.github.io/cita/usage-guide/rpc/) toolkit.
+Promise based [CITA RPC](https://cryptape.github.io/cita/zh/usage-guide/rpc/) toolkit.
 
 # Features
 
