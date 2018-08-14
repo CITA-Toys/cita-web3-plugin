@@ -1,5 +1,7 @@
-![Build Status](https://travis-ci.org/CITA-Toys/cita-web3-plugin.svg?branch=master)
+![Build Status](https://travis-ci.org/cryptape/cita-web3-plugin.svg?branch=master)
 ![npm (scoped)](https://img.shields.io/npm/v/@nervos/plugin.svg)
+[![MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/cryptape/cita-web3-plugin)
+[![AppChain](https://img.shields.io/badge/made%20for-Nervos%20AppChain-blue.svg)](https://appchain.nervos.org/)
 
 # CITA-Web3-Plugin
 
