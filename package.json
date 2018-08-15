@@ -19,6 +19,10 @@
     "protoc": "protoc --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --proto_path=./cita-proto --ts_out=./proto-ts --js_out=import_style=commonjs,binary:./proto-ts ./cita-proto/blockchain.proto",
     "prepublish": "yarn run build && yarn run test"
   },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/"
+  },
   "devDependencies": {
     "@nervos/signer": "^1.0.21",
     "@types/node": "^9.6.1",
@@ -30,9 +34,5 @@
     "@types/google-protobuf": "^3.2.7",
     "axios": "^0.18.0",
     "google-protobuf": "^3.5.0"
-  },
-  "jest": {
-    "verbose": true,
-    "testURL": "http://localhost/"
   }
 }
