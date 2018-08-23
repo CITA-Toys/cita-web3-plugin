@@ -1,6 +1,6 @@
 {
   "name": "@nervos/plugin",
-  "version": "0.17.11",
+  "version": "0.18.0",
   "keywords": [
     "Nervos",
     "CITA",
@@ -10,7 +10,7 @@
   ],
   "main": "lib/index.js",
   "types": "lib/index.d.js",
-  "repository": "https://github.com/CITA-Toys/cita-web3-plugin",
+  "repository": "https://github.com/cryptape/nervos-plugin",
   "author": "Keith <keithwhisper@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -26,7 +26,7 @@
   "devDependencies": {
     "@nervos/signer": "^1.0.21",
     "@types/node": "^9.6.1",
-    "jest": "^22.4.3",
+    "jest": "^23.5.0",
     "ts-protoc-gen": "^0.7.3",
     "typescript": "^2.8.1"
   },
