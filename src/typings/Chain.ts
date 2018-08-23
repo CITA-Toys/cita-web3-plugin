@@ -30,7 +30,7 @@ export namespace Chain {
     stateRoot: BasicTypes.Hash
     transactionsRoot: BasicTypes.Hash
     proof: {
-      Tendermint: {
+      Bft: {
         proposal: BasicTypes.Hash
         height: number
         round: number

@@ -442,10 +442,30 @@ export namespace BlackList {
   }
 }
 
+export class StateSignal extends jspb.Message {
+  getHeight(): number;
+  setHeight(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StateSignal.AsObject;
+  static toObject(includeInstance: boolean, msg: StateSignal): StateSignal.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StateSignal, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StateSignal;
+  static deserializeBinaryFromReader(message: StateSignal, reader: jspb.BinaryReader): StateSignal;
+}
+
+export namespace StateSignal {
+  export type AsObject = {
+    height: number,
+  }
+}
+
 export enum ProofType {
   AUTHORITYROUND = 0,
   RAFT = 1,
-  TENDERMINT = 2,
+  BFT = 2,
 }
 
 export enum Crypto {

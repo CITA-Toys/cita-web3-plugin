@@ -54,7 +54,7 @@ const inquireProof = txHash =>
     }, 1000)
   })
 
-test('sendSignedTransaction, getTransactionReceipt, getTransaction, and parse Transaction', async () => {
+test.skip('sendSignedTransaction, getTransactionReceipt, getTransaction, and parse Transaction', async () => {
   jest.setTimeout(100000)
   const current = await Nervos.getBlockNumber()
   const transaction = {
